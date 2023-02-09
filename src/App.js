@@ -5,6 +5,7 @@ import firebaseApp, {getFirebaseToken, onForegroundMessage} from "./firebase";
 
 function App() {
   const [token, setToken] = React.useState(null);
+  const [receivedMessage, setReceivedMessage] = React.useState(0);
 
   
 
@@ -37,9 +38,10 @@ function App() {
     onForegroundMessage()
       .then((payload) => {
         console.log('Received foreground message: ', payload);
+        setReceivedMessage(receivedMessage + 1);
       })
       .catch(err => console.log('An error occured while retrieving foreground message. ', err));
-  }, []);
+  }, [receivedMessage]);
 
   // function subscribeUserToPush() {
     // return navigator.serviceWorker.register('service-worker.js').then(function(registration) {
@@ -77,7 +79,7 @@ function App() {
         <p>
           {token}
         </p>
-        <button onClick={subscribeUserToPush}>Subscribe2</button>
+        <button onClick={subscribeUserToPush}>Subscribe</button>
       </header>
     </div>
   );
