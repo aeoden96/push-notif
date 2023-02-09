@@ -64,6 +64,7 @@ function App() {
     getFirebaseToken()
       .then((firebaseToken) => {
         console.log('Firebase token: ', firebaseToken);
+        alert('Firebase token: ' + firebaseToken);
         if (firebaseToken) {
           setToken(firebaseToken);
           console.log(firebaseToken);
